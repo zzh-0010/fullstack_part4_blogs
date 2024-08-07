@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Hi from LA, US",
+  "author": "Taylor",
+  "url": "http://TaylorNation.com/imgonnagetyouback",
+  "likes": "13"
+}
