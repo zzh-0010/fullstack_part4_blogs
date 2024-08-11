@@ -1,25 +1,24 @@
+//models里的blog文件不再负责连接数据库，而将此功能转交给app.js
 const mongoose = require('mongoose')
-const config = require('../utils/config')
-
-mongoose.set('strictQuery', false)
-
-const url = config.MONGODB_URL
-
-console.log('connecting to...', url)
-
-mongoose.connect(url)
-    .then(result => {
-        console.log('Connected to MONGODB')
-    })
-    .catch(error => {
-        console.log('error connecting to MONGODB..', error.message)
-    })
 
 const blogSchema = new mongoose.Schema({
-  title: String,
+  title: {
+    type: String,
+    required: true
+  },
   author: String,
-  url: String,
-  likes: Number
+  url: {
+    type: String,
+    required: true
+  },
+  likes: {
+    type: Number,
+    default: 0
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 blogSchema.set('toJSON', {
